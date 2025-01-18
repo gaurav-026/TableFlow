@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
-
+import Papa from "papaparse"; // For robust CSV parsing
 
 const MainPage = () => {
   const [tableData, setTableData] = useState([]);
@@ -14,7 +14,13 @@ const MainPage = () => {
       const url =
         "https://docs.google.com/spreadsheets/d/e/2PACX-1vSRYHJBl-aUj4oL3uGTHiSmxSPjBSXNckPD8tfcSjSmn8ixmJXCt0aMUEzbm7hB4RcF0nxGQeBHJUoV/pub?output=csv"; // Google Sheet CSV URL
       const response = await axios.get(url);
-      const rows = response.data.split("\n").map((row) => row.split(","));
+      console.log(response.data);
+      // Parse the CSV data
+      const parsedData = Papa.parse(response.data, {
+        header: false, // The first row is not the header
+        skipEmptyLines: true, // Skip empty lines
+      });
+      const rows = parsedData.data;
       // console.log(rows);
       setTableData(
         rows.slice(1).map((row, index) => ({
