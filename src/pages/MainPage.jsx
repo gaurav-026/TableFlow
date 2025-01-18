@@ -66,7 +66,7 @@ const MainPage = () => {
 
       <div className="flex flex-col gap-1">
         <h1 className='text-xl font-semibold'>Welcome !</h1>
-        <p className=''>The data shown in the table contains information about Employees in the organization, their respective country, rating and their admin status.  </p>
+        <p className=''>The data shown in the table contains information about Domain, Niche, Traffic, Price, Language and its spam score. </p>
       </div>
       {/* Display table here */}
       <div style={{ height: "80vh", width: "100%", border: '1px solid #08b100', borderRadius: "8px" }}>
